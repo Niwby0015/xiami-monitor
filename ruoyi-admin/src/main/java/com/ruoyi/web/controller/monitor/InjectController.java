@@ -46,7 +46,7 @@ public class InjectController extends BaseController {
                   "--mysql-host=192.168.31.34 " +
                   "--mysql-port=3307 " +
                   "--mysql-user=test " +
-                  "--mysql-password=123456 " +
+                  "--mysql-password= " +
                   "--mysql-db=test " +
                   "--threads=" + threads + " " +
                   "--time=" + time + " run";
@@ -56,7 +56,7 @@ public class InjectController extends BaseController {
                   "--mysql-host=192.168.31.34 " +
                   "--mysql-port=3307 " +
                   "--mysql-user=test " +
-                  "--mysql-password=123456 " +
+                  "--mysql-password= " +
                   "--mysql-db=test " +
                   "--threads=" + threads + " " +
                   "--time=" + time + " run";
@@ -66,7 +66,7 @@ public class InjectController extends BaseController {
                   "--mysql-host=192.168.31.34 " +
                   "--mysql-port=3307 " +
                   "--mysql-user=test " +
-                  "--mysql-password=123456 " +
+                  "--mysql-password= " +
                   "--mysql-db=test " +
                   "--threads=100 " +
                   "--time=" + time + " run";
@@ -81,10 +81,10 @@ public class InjectController extends BaseController {
             cmd = "stress --io " + threads + " --timeout " + time;
             log.info("执行磁盘IO注入: {}", cmd);
         } else if ("tablescan".equals(type)) {
-            cmd = "mysql -uroot -p123456 -e \"SELECT * FROM large_table;\" && sleep " + time;
+            cmd = "mysql -uroot -p -e \"SELECT * FROM large_table;\" && sleep " + time;
             log.info("执行全表扫描注入: {}", cmd);
         } else if ("deadlock".equals(type)) {
-            cmd = "mysql -uroot -p123456 -e \"START TRANSACTION; UPDATE test.table1 SET col1 = 'test' WHERE id = 1; SELECT SLEEP(" + time + "); COMMIT;\"";
+            cmd = "mysql -uroot -p -e \"START TRANSACTION; UPDATE test.table1 SET col1 = 'test' WHERE id = 1; SELECT SLEEP(" + time + "); COMMIT;\"";
             log.info("执行死锁注入: {}", cmd);
         } else {
             log.warn("不支持的异常类型: {}", type);
@@ -97,7 +97,7 @@ public class InjectController extends BaseController {
     public void executeSSH(String command) throws Exception {
         com.jcraft.jsch.JSch jsch = new com.jcraft.jsch.JSch();
         com.jcraft.jsch.Session session = jsch.getSession("root", "192.168.31.34", 22);
-        session.setPassword("mobisys912");
+        session.setPassword("");
         session.setConfig("StrictHostKeyChecking", "no");
         session.setConfig("ConnectTimeout", "30000");
         session.setConfig("ServerAliveInterval", "10000");

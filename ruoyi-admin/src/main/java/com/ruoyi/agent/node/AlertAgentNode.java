@@ -23,7 +23,7 @@ public class AlertAgentNode {
 
     public AlertAgentNode() {
         this.model = OpenAiChatModel.builder()
-                .apiKey("sk-de19871c4b3f4577bfd8597d119de639")
+                .apiKey("")
                 .baseUrl("https://api.deepseek.com/v1")
                 .modelName("deepseek-chat")
                 .temperature(0.0)

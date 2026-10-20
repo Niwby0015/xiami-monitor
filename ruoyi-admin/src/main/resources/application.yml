@@ -93,7 +93,7 @@ token:
   # 令牌自定义标识
   header: Authorization
   # 令牌密钥
-  secret: abcdefghijklmnopqrstuvwxyz
+  secret:
   # 令牌有效期（默认30分钟）
   expireTime: 30
 
@@ -142,7 +142,7 @@ n9e:
   base-url: http://192.168.31.34:30005
   # N9e root 账号
   username: root
-  password: root.2020
+  password:
   # 默认业务组ID（N9e 初始化后第一个业务组ID，通常为1）
   default-busi-group: 1
 
